@@ -1,0 +1,112 @@
+GET http://localhost:3000/api/agentes HTTP/1.1
+###3000\
+GET http://localhost:3000/api/grados HTTP/1.1
+###
+POST http://localhost:3000/api/agente HTTP/1.1
+content-type: application/json
+
+{
+    "nombre": "GARCÍA CATAÑA HÉCTOR GONZALO",
+    "correo": "davido1209@hotmail.es"
+}
+###
+DELETE http://localhost:3000/api/agente HTTP/1.1
+content-type: application/json
+
+{
+    "id": 29,
+    "idUsuario": 7,
+    "nombre": "CAMACHO BRICEÑO CHRISTIAN GIOVANNY",
+    "correo": "davido1209@hotmail.es"
+}
+###
+POST http://localhost:3000/api/delegacion HTTP/1.1
+content-type: application/json
+
+{
+    "mesIngreso": "Enero",
+    "numInvestPrevia": "delegacion.numInvestPrevia",
+    "numInstFiscal": "delegacion.numInstFiscal",
+    "idDistrito": 1,
+    "idAgente": 2,
+    "idGrado": 2,
+    "idDelito": 1,
+    "idModalidad": 2,
+    "fechaInfraccion": "2022-01-20T12:01:30.543Z",
+    "nombreVictima": "delegacion.nombreVictima",
+    "sexoVictima": "delegacion.sexoVictima",
+    "edadVictima": 30,
+    "nombreDetenido": "delegacion.nombreDetenido",
+    "idCondicion": 1,
+    "idParentesco": 1,
+    "nombreFiscal": "delegacion.nombreFiscal",
+    "unidadFiscalia": "delegacion.unidadFiscalia",
+    "fechaDelegacion": "2022-01-20T12:01:30.543Z",
+    "fechaRecepcionPJ": "2022-01-20T12:01:30.543Z",
+    "fechaRecAgente": "2022-01-20T12:01:30.543Z",
+    "numOficioRecAgente": "delegacion.numOficioRecAgente",
+    "plazoOtorgado": 10,
+    "art444": {
+        "no1": "delegacion.art444.no1",
+        "no2": "delegacion.art444.no2",
+        "no3": "delegacion.art444.no3",
+        "no4": "delegacion.art444.no4",
+        "no5": "delegacion.art444.no5",
+        "no6": "delegacion.art444.no6",
+        "no7": "delegacion.art444.no7",
+        "no8": "delegacion.art444.no8",
+        "no9": "delegacion.art444.no9",
+        "no10": "delegacion.art444.no10",
+        "no11": "delegacion.art444.no11",
+        "no12": "delegacion.art444.no12",
+        "no13": "delegacion.art444.no13",
+        "no14": "delegacion.art444.no14"
+    },
+    "cumplimiento": "delegacion.cumplimiento",
+    "fechaCumplimiento": "2022-01-20T12:01:30.543Z",
+    "numOficioDescargo": "delegacion.numOficioDescargo",
+    "numVersiones": 10,
+    "recLugarHechos": 10,
+    "detPosibResp": true,
+    "compareceSospechoso": false,
+    "peticionFiscalia": true,
+    "tiposPeticiones": [
+        {
+            "nombre": "peticion1"
+        },
+        {
+            "nombre": "peticion2"
+        },
+        {
+            "nombre": "peticion3"
+        },
+        {
+            "nombre": "peticion4"
+        }
+    ],
+    "informeODescargo": "delegacion.informeODescargo",
+    "causasIncumplimiento": "delegacion.causasIncumplimiento",
+    "detenidosProdInv": [
+        {
+            "nombre": "detenido 1"
+        },
+        {
+            "nombre": "detenido 2"
+        },
+        {
+            "nombre": "detenido 3"
+        }
+    ],
+    "observaciones": "delegacion.observaciones"
+}
+###
+POST http://localhost:3000/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "correo": "davido1209@hotmail.es",
+    "clave": "ERie%TQC"
+}
+
+###
+GET http://localhost:3000/auth/session HTTP/1.1

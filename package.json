@@ -1,0 +1,27 @@
+{
+  "name": "backend-ciberpol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.18.2",
+    "prisma": "^4.7.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.7.0",
+    "cors": "^2.8.5",
+    "express-session": "^1.17.3",
+    "formik": "^2.2.9",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20"
+  }
+}

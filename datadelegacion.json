@@ -1,0 +1,76 @@
+{
+    "mesIngreso": "delegacion.mesIngreso",
+    "numInvestPrevia": "delegacion.numInvestPrevia",
+    "numInstFiscal": "delegacion.numInstFiscal",
+    "idDistrito": "delegacion.idDistrito",
+    "idAgente": "delegacion.idAgente",
+    "idGrado": "delegacion.idGrado",
+    "idDelito": "delegacion.idDelito",
+    "idModalidad": "delegacion.idModalidad",
+    "fechaInfraccion": "delegacion.fechaInfraccion",
+    "nombreVictima": "delegacion.nombreVictima",
+    "sexoVictima": "delegacion.sexoVictima",
+    "edadVictima": "delegacion.edadVictima",
+    "nombreDetenido": "delegacion.nombreDetenido",
+    "idCondicion": "delegacion.idCondicion",
+    "idParentesco": "delegacion.idParentesco",
+    "nombreFiscal": "delegacion.nombreFiscal",
+    "unidadFiscalia": "delegacion.unidadFiscalia",
+    "fechaDelegacion": "delegacion.fechaDelegacion",
+    "fechaRecepcionPJ": "delegacion.fechaRecepcionPJ",
+    "fechaRecAgente": "delegacion.fechaRecAgente",
+    "numOficioRecAgente": "delegacion.numOficioRecAgente",
+    "plazoOtorgado": "delegacion.plazoOtorgado",
+    "art444": {
+        "no1": "delegacion.art444.no1",
+        "no2": "delegacion.art444.no2",
+        "no3": "delegacion.art444.no3",
+        "no4": "delegacion.art444.no4",
+        "no5": "delegacion.art444.no5",
+        "no6": "delegacion.art444.no6",
+        "no7": "delegacion.art444.no7",
+        "no8": "delegacion.art444.no8",
+        "no9": "delegacion.art444.no9",
+        "no10": "delegacion.art444.no10",
+        "no11": "delegacion.art444.no11",
+        "no12": "delegacion.art444.no12",
+        "no13": "delegacion.art444.no13",
+        "no14": "delegacion.art444.no14"
+    },
+    "cumplimiento": "delegacion.cumplimiento",
+    "fechaCumplimiento": "delegacion.fechaCumplimiento",
+    "numOficioDescargo": "delegacion.numOficioDescargo",
+    "numVersiones": "delegacion.numVersiones",
+    "recLugarHechos": "delegacion.recLugarHechos",
+    "detPosibResp": "delegacion.detPosibResp",
+    "compareceSospechoso": "delegacion.compareceSospechoso",
+    "peticionFiscalia": "delegacion.peticionFiscalia",
+    "tiposPeticiones": [
+        {
+            "nombre": "peticion1"
+        },
+        {
+            "nombre": "peticion2"
+        },
+        {
+            "nombre": "peticion3"
+        },
+        {
+            "nombre": "peticion4"
+        }
+    ],
+    "informeODescargo": "delegacion.informeODescargo",
+    "causasIncumplimiento": "delegacion.causasIncumplimiento",
+    "detenidosProdInv": [
+        {
+            "nombre": "detenido 1"
+        },
+        {
+            "nombre": "detenido 2"
+        },
+        {
+            "nombre": "detenido 3"
+        }
+    ],
+    "observaciones": "delegacion.observaciones"
+}

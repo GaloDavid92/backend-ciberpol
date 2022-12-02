@@ -1,0 +1,177 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Zona {
+  id          Int @id @default(autoincrement())
+  nombre      String
+  provincias  Provincia[]
+}
+
+model Provincia {
+  id        Int  @id @default(autoincrement())
+  nombre    String
+  zona      Zona @relation(fields: [idZona], references: [id])
+  idZona    Int 
+  cantones  Canton[]
+}
+
+model Canton {
+  id            Int  @id @default(autoincrement())
+  nombre        String
+  provincia     Provincia @relation(fields: [idProvincia], references: [id])
+  idProvincia   Int 
+  distritos     Distrito[]
+}
+
+model Distrito {
+  id        Int @id @default(autoincrement())
+  codigo    String
+  nombre    String
+  canton    Canton @relation(fields: [idCanton], references: [id])
+  idCanton  Int
+  delegaciones Delegacion[]
+}
+
+model Grado {
+  id          Int @id @default(autoincrement())
+  nombre      String
+  delegaciones Delegacion[]
+}
+
+model Agente {
+  id        Int  @id @default(autoincrement())
+  nombre    String
+  delegaciones Delegacion[]
+  idUsuario Int @unique
+  usuario Usuario @relation(fields: [idUsuario], references: [id])
+}
+
+model Usuario {  
+  id      Int  @id @default(autoincrement())
+  agente  Agente?
+  correo  String @unique
+  clave   String
+  tipo    String
+}
+
+model SeccionDelito {
+  id Int @id @default(autoincrement())
+  seccion   String
+  delitos   Delito[]
+}
+
+model Delito {
+  id Int @id @default(autoincrement())
+  delito    String
+  seccion   SeccionDelito @relation(fields: [idSeccion], references: [id])
+  idSeccion Int
+  delegaciones Delegacion[]
+}
+
+model ModalidadDelito {
+  id Int @id @default(autoincrement())
+  modalidad String
+  delegaciones Delegacion[]
+}
+
+model Parentesco {
+  id Int @id @default(autoincrement())
+  nombre String
+  delegaciones Delegacion[]
+}
+
+model Condicion {
+  id Int @id @default(autoincrement())
+  condicion String
+  delegaciones Delegacion[]
+}
+
+model Art444{
+  id Int @id @default(autoincrement())
+  no1 String?
+  no2 String?
+  no3 String?
+  no4 String?
+  no5 String?
+  no6 String?
+  no7 String?
+  no8 String?
+  no9 String?
+  no10 String?
+  no11 String?
+  no12 String?
+  no13 String?
+  no14 String?
+  idDelegacion Int @unique
+  delegacion Delegacion @relation(fields: [idDelegacion], references: [id])
+}
+
+model TipoPeticion{  
+  id Int @id @default(autoincrement())
+  idDelegacion Int
+  nombre String
+  delegacion Delegacion @relation(fields: [idDelegacion], references: [id])
+}
+
+model DetenidoProdInves{  
+  id Int @id @default(autoincrement())
+  idDelegacion Int
+  nombre String
+  delegacion Delegacion @relation(fields: [idDelegacion], references: [id])
+}
+
+model Delegacion {
+  id Int @id @default(autoincrement())
+  mesIngreso String
+  numInvestPrevia String @unique
+  numInstFiscal String @unique
+  idDistrito Int
+  distrito Distrito @relation(fields: [idDistrito] , references: [id])
+  idAgente Int
+  agente Agente @relation(fields: [idAgente], references: [id])
+  idGrado Int
+  grado Grado @relation(fields: [idGrado], references: [id])
+  idDelito Int
+  delito Delito @relation(fields: [idDelito], references: [id])
+  idModalidad Int
+  Modalidad ModalidadDelito @relation(fields: [idModalidad], references: [id])
+  fechaInfraccion DateTime
+  nombreVictima String
+  sexoVictima String
+  edadVictima Int
+  nombreDetenido String
+  idCondicion Int
+  condicion Condicion @relation(fields: [idCondicion], references: [id])
+  idParentesco Int
+  parentesco Parentesco @relation(fields: [idParentesco], references: [id])
+  nombreFiscal String
+  unidadFiscalia String
+  fechaDelegacion DateTime
+  fechaRecepcionPJ DateTime
+  fechaRecAgente DateTime
+  numOficioRecAgente String
+  plazoOtorgado Int
+  art444 Art444?
+  cumplimiento String?
+  fechaCumplimiento DateTime?
+  numOficioDescargo String?
+  numVersiones Int?
+  recLugarHechos Int?
+  detPosibResp Boolean?
+  compareceSospechoso Boolean?
+  peticionFiscalia Boolean?
+  tiposPeticiones TipoPeticion[]
+  informeODescargo String?
+  causasIncumplimiento String?
+  detenidosProdInv DetenidoProdInves[]
+  observaciones String?
+}
