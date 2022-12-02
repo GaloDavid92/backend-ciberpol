@@ -1,5 +1,5 @@
 const emailConfig = {
-    user: '@gmail.com',
+    user: 'scritycloud@gmail.com',
     pass: '', 
     service: 'gmail'
 }
