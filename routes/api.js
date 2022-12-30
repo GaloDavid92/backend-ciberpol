@@ -30,6 +30,12 @@ apiRoute.get('/distritos/:idc', async (req, res) => {
     res.json(distritos)
 })
 
+apiRoute.get('/ubicacion/:idd', async (req, res) => {
+    const {idz: idd} = req.params
+    const ubicacion = await ubicacionesController.getUbicacion(idd)    
+    res.json(ubicacion)
+})
+
 apiRoute.get('/agentes', async (req, res) => {
     const agentes = await agentesContoller.getAgentes()
     res.json(agentes)
@@ -71,9 +77,19 @@ apiRoute.put('/agente', async (req, res) => {
 })
 
 apiRoute.delete('/agente', async (req, res) => {
-    const delAgente = req.body
-    const agente = await agentesContoller.deleteAgente(delAgente)    
-    res.json(agente)
+
+    try {
+        const delAgente = req.body
+        const agente = await agentesContoller.deleteAgente(delAgente)    
+        res.json(agente)
+        
+    } catch (error) {
+        console.error(error.message)
+        res.status(400).send({
+            error: error.message
+        })
+    }
+
 })
 
 apiRoute.get('/delitos', async (req, res) => {

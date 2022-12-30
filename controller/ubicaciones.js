@@ -3,6 +3,26 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
+const getUbicacion = async (idDistrito) =>{
+    const ubicacion = await prisma.distrito.findFirst({
+        where:{
+            id:idDistrito
+        },
+        include: {
+            canton: {
+                include: {
+                    provincia: {
+                        include: {
+                            zona: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+    return ubicacion
+}
+
 const getZonas = async () => {
     const zonas = await prisma.zona.findMany()
     return zonas
@@ -35,4 +55,4 @@ const getDistritos = async (idCanton) => {
     return distritos
 }
 
-export default { getZonas, getProvincias, getCantones, getDistritos }
+export default {getUbicacion, getZonas, getProvincias, getCantones, getDistritos }

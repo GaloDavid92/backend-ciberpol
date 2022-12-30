@@ -5,14 +5,41 @@ const prisma = new PrismaClient()
 
 const getDelegaciones = async () => {
     const delegaciones = await prisma.delegacion.findMany({
-        select: {
-            id: true,
-            mesIngreso: true,
-            numInvestPrevia: true,
-            numInstFiscal: true,
-            agente: true,
-            nombreVictima: true,
-            distrito: true
+        include: {
+            agente: {
+                include: {
+                    usuario: {
+                        select: {
+                            correo: true
+                        }
+                    }
+                }
+            },
+            grado: true,
+            delito: {
+                include: {
+                    seccion: true
+                }
+            },
+            Modalidad: true,
+            distrito: {
+                include: {
+                    canton: {
+                        include: {
+                            provincia: {
+                                include: {
+                                    zona: true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            condicion: true,
+            parentesco: true,
+            art444: true,
+            tiposPeticiones: true,
+            detenidosProdInv: true,
         }
     })
     return delegaciones

@@ -1,6 +1,6 @@
 const emailConfig = {
-    user: 'scritycloud@gmail.com',
-    pass: '', 
+    user: 'scriptycloud@gmail.com',
+    pass: 'nujrjblbbjmblame', 
     service: 'gmail'
 }
 
