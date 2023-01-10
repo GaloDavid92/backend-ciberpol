@@ -82,6 +82,36 @@ const getDelegacion = async (id) => {
     return delegacion
 }
 
+const cosultDelegacion = async (buscar) => {
+    const delegacion = await prisma.delegacion.findFirst({
+        where: {
+            OR: [
+                {
+                    numInstFiscal: buscar
+                },
+                {
+                    numInvestPrevia: buscar
+                }
+            ]
+        },
+        select: {
+            cumplimiento: true,
+            fechaCumplimiento:true,
+            numOficioDescargo:true,
+            numVersiones:true,
+            recLugarHechos:true,
+            detPosibResp:true,
+            compareceSospechoso:true,
+            peticionFiscalia:true,
+            tiposPeticiones: true,
+            informeODescargo:true,
+            causasIncumplimiento:true,
+            detenidosProdInv:true,
+            observaciones:true
+        }
+    })
+    return delegacion
+}
 
 const saveDelegacion = async (delegacion) => {
     const newDelegacion = await prisma.delegacion.create({
@@ -170,4 +200,4 @@ const updateDelegacionByAgente = async (delegacion) => {
     return newDelegacion
 }
 
-export default { getDelegaciones, getDelegacion, saveDelegacion, updateDelegacionByAgente }
+export default { getDelegaciones, getDelegacion, cosultDelegacion, saveDelegacion, updateDelegacionByAgente }

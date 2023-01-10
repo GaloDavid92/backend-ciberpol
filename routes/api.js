@@ -123,6 +123,12 @@ apiRoute.get('/delegacion/:idd', async (req, res) => {
     res.json(delegacion)
 })
 
+apiRoute.get('/consultar/:idd', async (req, res) => {
+    const {idd} = req.params
+    const delegacion = await delegacionController.cosultDelegacion(idd)    
+    res.json(delegacion)
+})
+
 apiRoute.post('/delegacion', async (req, res) => {
     const delegacion = req.body
     console.log("🚀 ~ file: authRoute.js ~ line 96 ~ authRoute.post ~ delegacion", delegacion)    
