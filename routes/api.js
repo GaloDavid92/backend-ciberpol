@@ -4,6 +4,7 @@ import agentesContoller from '../controller/agentes.js';
 import delitosContoller from '../controller/delitos.js';
 import detenidoContoller from '../controller/detenido.js';
 import delegacionController from '../controller/delegacion.js';
+import reporteController from '../controller/reportes.js'
 
 const apiRoute = Router();
 
@@ -140,6 +141,16 @@ apiRoute.put('/agente/delegacion', async (req, res) => {
     const delegacion = req.body   
     const newDeleg = await delegacionController.updateDelegacionByAgente(delegacion)    
     res.json(newDeleg)
+})
+
+apiRoute.get('/report', async (req, res) => {
+    const data = await reporteController.reportes()
+    res.json(data)
+})
+
+apiRoute.get('/reportdelito', async (req, res) => {
+    const data = await reporteController.reportesDelitos()
+    res.json(data)
 })
 
 export default apiRoute
