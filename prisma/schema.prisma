@@ -132,8 +132,8 @@ model DetenidoProdInves{
 model Delegacion {
   id Int @id @default(autoincrement())
   mesIngreso String
-  numInvestPrevia String @unique
-  numInstFiscal String @unique
+  numInvestPrevia String? @unique
+  numInstFiscal String? @unique
   idDistrito Int
   distrito Distrito @relation(fields: [idDistrito] , references: [id])
   idAgente Int

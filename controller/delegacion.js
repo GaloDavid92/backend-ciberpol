@@ -162,6 +162,7 @@ const saveDelegacion = async (delegacion) => {
     })
     return newDelegacion
 }
+
 const updateDelegacionByAgente = async (delegacion) => {
     await prisma.tipoPeticion.deleteMany({
         where: {
@@ -200,4 +201,36 @@ const updateDelegacionByAgente = async (delegacion) => {
     return newDelegacion
 }
 
-export default { getDelegaciones, getDelegacion, cosultDelegacion, saveDelegacion, updateDelegacionByAgente }
+const deleteDelegacion = async (delegacion) => {
+
+    const delArt = prisma.art444.deleteMany({
+        where: {
+            idDelegacion: parseInt(delegacion.id),
+        }
+    })
+
+    const delTipoPet = prisma.tipoPeticion.deleteMany({
+        where: {
+            idDelegacion: parseInt(delegacion.id),
+        }
+    })
+
+    const delDetenidos = prisma.detenidoProdInves.deleteMany({
+        where: {
+            idDelegacion: parseInt(delegacion.id),
+        }
+    })
+
+    const deleteDelegacion = prisma.delegacion.delete({
+        where: {
+            id: parseInt(delegacion.id),
+        },
+    })
+
+    const transaction = await prisma.$transaction([delArt, delTipoPet, delDetenidos, deleteDelegacion])
+    
+    return true
+
+}
+
+export default { getDelegaciones, getDelegacion, cosultDelegacion, saveDelegacion, updateDelegacionByAgente, deleteDelegacion }

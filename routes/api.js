@@ -153,4 +153,20 @@ apiRoute.get('/reportdelito', async (req, res) => {
     res.json(data)
 })
 
+apiRoute.delete('/delegacion', async (req, res) => {
+
+    try {
+        const delDelegacion = req.body
+        const agente = await delegacionController.deleteDelegacion(delDelegacion)
+        res.json(agente)
+        
+    } catch (error) {
+        console.error(error.message)
+        res.status(400).send({
+            error: error.message
+        })
+    }
+
+})
+
 export default apiRoute
