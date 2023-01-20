@@ -174,6 +174,7 @@ const updateDelegacionByAgente = async (delegacion) => {
             idDelegacion: parseInt(delegacion.id)
         }
     })
+
     const newDelegacion = await prisma.delegacion.update({
         where: {
             id: parseInt(delegacion.id)
@@ -198,6 +199,7 @@ const updateDelegacionByAgente = async (delegacion) => {
             observaciones: delegacion.observaciones,
         }
     })
+
     return newDelegacion
 }
 
@@ -226,7 +228,7 @@ const deleteDelegacion = async (delegacion) => {
             id: parseInt(delegacion.id),
         },
     })
-
+    
     const transaction = await prisma.$transaction([delArt, delTipoPet, delDetenidos, deleteDelegacion])
     
     return true
