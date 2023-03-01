@@ -58,6 +58,7 @@ model Agente {
 model Usuario {  
   id      Int  @id @default(autoincrement())
   agente  Agente?
+  nombre String?
   correo  String @unique
   clave   String
   tipo    String

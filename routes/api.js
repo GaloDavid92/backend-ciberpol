@@ -5,6 +5,7 @@ import delitosContoller from '../controller/delitos.js';
 import detenidoContoller from '../controller/detenido.js';
 import delegacionController from '../controller/delegacion.js';
 import reporteController from '../controller/reportes.js'
+import usuariosController from '../controller/usuarios.js';
 
 const apiRoute = Router();
 
@@ -71,10 +72,31 @@ apiRoute.post('/agente', async (req, res) => {
     }
 })
 
-apiRoute.put('/agente', async (req, res) => {
+apiRoute.post('/usuario', async (req, res) => {
+    try{
+        const newUsuario = req.body
+        const usuaio = await usuariosController.saveUsuario(newUsuario)    
+        res.json(usuaio)
+    } catch (error){
+        console.error(error.message)
+        res.status(400).send({
+            error: error.message
+        })
+    }
+})
+
+apiRoute.put('/agente', async (req, res) => {    
     const udtAgente = req.body
+    console.log("🚀 ~ file: api.js:90 ~ apiRoute.put ~ udtAgente:", udtAgente)
     const agente = await agentesContoller.updateAgente(udtAgente)    
     res.json(agente)
+})
+
+apiRoute.put('/usuario', async (req, res) => {    
+    const udtUser = req.body
+    console.log("🚀 ~ file: api.js:97 ~ apiRoute.put ~ udtAgente:", udtUser)
+    const usuario = await usuariosController.updateUser(udtUser)    
+    res.json(usuario)
 })
 
 apiRoute.delete('/agente', async (req, res) => {
@@ -83,7 +105,7 @@ apiRoute.delete('/agente', async (req, res) => {
         const delAgente = req.body
         const agente = await agentesContoller.deleteAgente(delAgente)    
         res.json(agente)
-        
+
     } catch (error) {
         console.error(error.message)
         res.status(400).send({
@@ -167,6 +189,21 @@ apiRoute.delete('/delegacion', async (req, res) => {
         })
     }
 
+})
+
+apiRoute.get('/usuarios', async (req, res) =>{
+    const usuarios = await usuariosController.getUsers()
+    const usuariosData = usuarios.map((u)=>{
+        return {
+            id: u.id,
+            nombre: u.nombre? u.nombre : u.agente.nombre,
+            correo: u.correo,
+            tipo: u.tipo,
+            agente: u.agente ? u.agente : null,
+        }
+    })
+
+    res.json(usuariosData)
 })
 
 export default apiRoute

@@ -1,6 +1,7 @@
 
 import { PrismaClient } from '@prisma/client'
 import enviarMail from '../utils/sendMail.js'
+import generatePassword from '../utils/generatePassword.js'
 
 const prisma = new PrismaClient()
 
@@ -9,7 +10,8 @@ const getAgentes = async () => {
         include: {
             usuario: {
                 select: {
-                    correo: true
+                    correo: true,
+                    tipo: true
                 }
             }
         }
@@ -84,6 +86,7 @@ const updateAgente = async (agenteUpd) => {
     const body = `Se ha actualizado el usuario para el agente ${agente.nombre}, ingrese a la plataforma utilizando el correo con la <strong>clave: </strong>${agente.usuario.clave}`
     enviarMail(agenteUpd.correo, "ACTUALIZACIÓN DE DATOS", body)
     return agente
+    
 }
 
 const deleteAgente = async (agenteDel) => {
@@ -97,17 +100,6 @@ const deleteAgente = async (agenteDel) => {
             id: agenteDel.idUsuario
         }
     })
-}
-
-
-function generatePassword() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+-*/$%&/=?¡",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
 }
 
 export default { getGrados, getAgentes, getAgente, saveAgente, updateAgente, deleteAgente, getCorreos}

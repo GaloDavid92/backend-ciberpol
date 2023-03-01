@@ -28,4 +28,5 @@ const enviarMail = (to, subject, body) => {
     })
 }
 
+
 export default enviarMail
